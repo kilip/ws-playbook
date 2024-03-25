@@ -1,0 +1,8 @@
+---
+- name: Core Packages
+  hosts: all
+  become: true
+  roles:
+    - geerlingguy.docker
+  vars_files:
+    - config/default.yml
