@@ -1,8 +1,41 @@
 ---
+user: toni
+group: "{{ user }}"
+home_dir: "/home/{{ user }}"
 core_packages:
   - direnv
-  
+  - nitrogen
+  - git
+  #> davinci resolve requirements
+  - libfuse2
+  - libapr1
+  - libaprutil1
+  - libxcb-damage0
+  #< davinci resolve
+
+regolith_ubuntu_packages:
+  - regolith-desktop
+  - regolith-session-flashback
+  - regolith-look-dracula
+  - regolith-compositor-compton-glx
+  - i3xrocks-focused-window-name
+  - i3xrocks-rofication
+  - i3xrocks-info
+  - i3xrocks-app-launcher
+  - i3xrocks-memory
+  - i3xrocks-cpu-usage
+  - i3xrocks-temp
+
 docker_install_compose_plugin: false
 docker_install_compose: false
 docker_users:
   - toni
+
+fish_packages:
+  - fish
+
+fish_plugins:
+  - virtualfish
+
+fish_themes:
+  - bobthefish

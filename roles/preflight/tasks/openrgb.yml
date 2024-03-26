@@ -1,0 +1,14 @@
+---
+# ppa:thopiekar/openrgb
+- name: Ensure openrgb ppa repository added
+  ansible.builtin.apt_repository:
+    repo: ppa:thopiekar/openrgb
+    update_cache: true
+    codename: jammy
+  tags: openrgb
+
+- name: Ensure openrgb package installed
+  ansible.builtin.package:
+    name: openrgb
+    state: present
+  tags: openrgb

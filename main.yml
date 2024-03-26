@@ -3,6 +3,11 @@
   hosts: all
   become: true
   roles:
-    - geerlingguy.docker
+    - role: preflight
+      tags: preflight
+    - role: geerlingguy.docker
+      tags: main
+    - role: kilip.regolith
+      tags: main
   vars_files:
     - config/default.yml
