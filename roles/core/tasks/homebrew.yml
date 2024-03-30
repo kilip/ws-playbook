@@ -19,7 +19,7 @@
         NONINTERACTIVE: "1"
     - name: Ensure homebrew updated
       ansible.builtin.command:
-        cmd: brew update
+        cmd: /home/linuxbrew/.linuxbrew/bin/brew update
       changed_when: false
     - name: Ensure homebrew tap packages configured
       ansible.builtin.command:
