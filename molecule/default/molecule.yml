@@ -16,9 +16,8 @@ platforms:
 
 provisioner:
   name: ansible
-  config_options:
-    tags:
-      run: preflight, core
+  env:
+    ANSIBLE_RUN_TAGS: preflight,core
 
 verifier:
   name: ansible
