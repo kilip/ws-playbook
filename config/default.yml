@@ -10,13 +10,13 @@ core_packages:
   - composer
   - pass
   - age
-  - build-essential # > homebrew
+  - build-essential   # > homebrew
   - procps
-  - file # < homebrew
-  - libfuse2 # > davinci resolve requirements
+  - file              # < homebrew
+  - libfuse2          # > davinci resolve requirements
   - libapr1
   - libaprutil1
-  - libxcb-damage0 # < davinci resolve
+  - libxcb-damage0    # < davinci resolve
 
 regolith_ubuntu_packages:
   - regolith-desktop
