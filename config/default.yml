@@ -38,3 +38,6 @@ docker_users:
 
 core_fish_packages:
   - fish
+
+install_docker: false
+install_regolith: false

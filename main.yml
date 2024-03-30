@@ -9,8 +9,13 @@
       tags: core
     - role: geerlingguy.docker
       tags: docker
+      when: install_docker
     - role: kilip.regolith
       tags: regolith
+      when: install_regolith
   vars_files:
     - config/default.yml
     - config/custom.yml
+  vars:
+    install_docker: "{{ install_docker || false }}"
+    install_regolith: "{{ install_regolith || false }}"
