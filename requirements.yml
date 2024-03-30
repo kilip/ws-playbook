@@ -3,5 +3,5 @@ collections:
   - ansible.posix
   - community.general
 roles:
-  - geerlingguy.docker
-  - kilip.regolith
+  - name: geerlingguy.docker
+  - name: kilip.regolith

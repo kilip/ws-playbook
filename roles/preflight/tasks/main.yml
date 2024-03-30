@@ -5,10 +5,16 @@
     cache_valid_time: 600
 
 - name: Ensure required packages installed
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ core_packages }}"
     state: present
+  tags: packages
 
 - name: Ensure user configured
-  ansible.builtin.include_tasks: user.yml
+  ansible.builtin.import_tasks: user.yml
   tags: user
+
+- name: Ensure password store configured
+  ansible.builtin.import_tasks: pass.yml
+  when: preflight_pass_repo != ''
+  tags: pass

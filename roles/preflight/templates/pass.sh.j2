@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+gpg --import ~/.password-store/gpg-key-backup.asc
+echo "{{ preflight_pass_gpg_id }}:6:" | gpg --import-ownertrust
+
+mkdir -p ~/.ssh
+
+if ! [ -f ~/.ssh/id_rsa ]; then
+  pass ssh/private >> ~/.ssh/id_rsa
+  chmod 0600 ~/.ssh/id_rsa
+fi
+
+if ! [ -f ~/.ssh/id_rsa.pub ]; then
+  pass ssh/public >> ~/.ssh/id_rsa.pub
+  chmod 0600 ~/.ssh/id_rsa.pub
+fi
+
+eval `ssh-agent`
+ssh-add
+
+git remote set-url origin git@github.com:kilip/password-store.git
+
+mkdir -p ~/.config/sops/age
+pass age/keys >> ~/.config/sops/age/keys.txt

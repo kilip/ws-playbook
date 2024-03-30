@@ -1,1 +1,4 @@
 ---
+preflight_pass_repo: ""
+preflight_pass_gpg_id: ""
+preflight_github_token: ""

@@ -1,0 +1,23 @@
+---
+- name: Ensure configure scripts copied
+  ansible.builtin.template:
+    src: pass.sh.j2
+    dest: "/tmp/pass.sh"
+    owner: toni
+    group: toni
+    mode: "0775"
+
+- name: Ensure password store repo cloned  # noqa: latest[git]
+  become: true
+  become_user: "{{ user }}"
+  ansible.builtin.git:
+    repo: "{{ preflight_pass_repo }}"
+    dest: "{{ home_dir }}/.password-store"
+
+- name: Ensure pass configure scripts executed
+  become: true
+  become_user: "{{ user }}"
+  ansible.builtin.command:
+    cmd: "/tmp/pass.sh"
+    chdir: "{{ home_dir }}/.password-store"
+    creates: "{{ home_dir }}/.config/sops/age/keys.txt"
