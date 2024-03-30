@@ -6,8 +6,9 @@ platforms:
     image: ghcr.io/kilip/molecule-ubuntu-22.04
     pre_build_image: true
     privileged: true
+    cgroupns_mode: host
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     env:
       HTTP_PROXY: "${HTTP_PROXY}"
       http_proxy: "${HTTP_PROXY}"
@@ -16,8 +17,6 @@ platforms:
 
 provisioner:
   name: ansible
-  env:
-    ANSIBLE_RUN_TAGS: preflight,core
 
 verifier:
   name: ansible
