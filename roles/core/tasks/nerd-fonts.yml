@@ -1,0 +1,19 @@
+---
+- name: Ensure fonts dir exists
+  ansible.builtin.file:
+    path: "{{ home_dir }}/.local/share/fonts"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0775"
+
+- name: Ensure nerd fonts unzipped
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
+    dest: "{{ home_dir }}/.local/share/fonts"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0666"
+    remote_src: true
+    creates: "{{ home_dir }}/.local/share/fonts/HackNerdFontMono-Bold.ttf"
+  tags: nerd-fonts

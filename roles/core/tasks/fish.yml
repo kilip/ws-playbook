@@ -1,7 +1,7 @@
 ---
 - name: Ensure fish package installed
   ansible.builtin.package:
-    name: "{{ fish_packages }}"
+    name: "{{ core_fish_packages }}"
     state: present
   tags: fish
 
@@ -34,7 +34,7 @@
   ansible.builtin.command:
     cmd: 'fish -c "omf install {{ item }}"'
     creates: "{{ home_dir }}/.local/share/omf/pkg/{{ item }}"
-  with_items: "{{ fish_plugins }}"
+  with_items: "{{ core_omf_plugins }}"
   tags: fish
 
 - name: Ensure omf themes installed
@@ -43,16 +43,5 @@
   ansible.builtin.command:
     cmd: 'fish -c "omf install {{ item }}"'
     creates: "{{ home_dir }}/.local/share/omf/themes/{{ item }}"
-  with_items: "{{ fish_themes }}"
-  tags: fish
-
-- name: Ensure nerd fonts unzipped
-  ansible.builtin.unarchive:
-    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
-    dest: "{{ home_dir }}/.local/share/fonts"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: "0666"
-    remote_src: yes
-    creates: "{{ home_dir }}/.local/share/fonts/HackNerdFontMono-Bold.ttf"
+  with_items: "{{ core_omf_themes }}"
   tags: fish

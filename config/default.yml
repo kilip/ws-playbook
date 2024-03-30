@@ -3,15 +3,20 @@ user: toni
 group: "{{ user }}"
 home_dir: "/home/{{ user }}"
 core_packages:
+  - curl
   - direnv
   - nitrogen
   - git
-  #> davinci resolve requirements
-  - libfuse2
+  - composer
+  - pass
+  - age
+  - build-essential # > homebrew
+  - procps
+  - file # < homebrew
+  - libfuse2 # > davinci resolve requirements
   - libapr1
   - libaprutil1
-  - libxcb-damage0
-  #< davinci resolve
+  - libxcb-damage0 # < davinci resolve
 
 regolith_ubuntu_packages:
   - regolith-desktop
@@ -31,11 +36,5 @@ docker_install_compose: false
 docker_users:
   - toni
 
-fish_packages:
+core_fish_packages:
   - fish
-
-fish_plugins:
-  - virtualfish
-
-fish_themes:
-  - bobthefish

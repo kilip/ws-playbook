@@ -2,16 +2,13 @@
 - name: Ensure cache updated
   ansible.builtin.apt:
     update_cache: true
+    cache_valid_time: 600
 
 - name: Ensure required packages installed
   ansible.builtin.package:
     name: "{{ core_packages }}"
     state: present
 
-- name: Ensure fish installed
-  ansible.builtin.include_tasks: fish.yml
-  tags: fish
-
-- name: Ensure openrgb installed
-  ansible.builtin.include_tasks: openrgb.yml
-  tags: openrgb
+- name: Ensure user configured
+  ansible.builtin.include_tasks: user.yml
+  tags: user

@@ -1,0 +1,16 @@
+---
+- name: Ensure sudoers configured
+  community.general.sudoers:
+    name: "allow-user-{{ user }}"
+    state: present
+    user: "{{ user }}"
+    commands: "ALL"
+    nopassword: true
+  tags: user
+
+- name: Ensure user shell configured
+  ansible.builtin.user:
+    user: "{{ user }}"
+    state: present
+    shell: /usr/bin/fish
+  tags: user

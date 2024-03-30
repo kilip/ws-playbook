@@ -1,0 +1,37 @@
+---
+- name: Ensure homebrew install script downloaded
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    dest: /tmp/homebrew-install.sh
+    mode: "0777"
+  tags: homebrew
+
+- name: Ensure homebrew installed
+  become: true
+  become_user: "{{ user }}"
+  tags: homebrew
+  block:
+    - name: Ensure homebrew configured
+      ansible.builtin.command:
+        cmd: /tmp/homebrew-install.sh
+        creates: /home/linuxbrew/.linuxbrew/bin/brew
+      environment:
+        NONINTERACTIVE: "1"
+    - name: Ensure homebrew updated
+      ansible.builtin.command:
+        cmd: brew update
+      changed_when: false
+    - name: Ensure homebrew tap packages configured
+      ansible.builtin.command:
+        cmd: "brew tap {{ hb_splits[0] }}/tap"
+        creates: "/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/{{ hb_splits[0] }}"
+      when: "'/tap/' in item"
+      with_items: "{{ core_homebrew_packages }}"
+      tags: test
+      vars:
+        hb_splits: "{{ item | split('/') }}"
+    - name: Ensure homebrew packages installed
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ core_homebrew_packages }}"

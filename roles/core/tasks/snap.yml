@@ -1,0 +1,6 @@
+---
+- name: Ensure snap packages installed
+  community.general.snap:
+    name: "{{ item }}"
+  with_items: "{{ core_snap_packages }}"
+  tags: snap

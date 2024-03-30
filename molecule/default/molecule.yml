@@ -1,0 +1,21 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: ghcr.io/kilip/molecule-ubuntu-22.04
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    env:
+      HTTP_PROXY: "${HTTP_PROXY}"
+      http_proxy: "${HTTP_PROXY}"
+      HTTPS_PROXY: "${HTTP_PROXY}"
+      https_proxy: "${HTTP_PROXY}"
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible

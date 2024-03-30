@@ -1,0 +1,12 @@
+---
+core_dotfiles_repo: ""
+
+core_chezmoi_install_script: "/tmp/chezmoi.sh"
+core_chezmoi_cmd: "sh -c {{ core_chezmoi_install_script }} -- init"
+
+core_fish_packages: []
+core_omf_plugins: []
+core_omf_themes: []
+
+core_homebrew_packages: []
+core_snap_packages: []

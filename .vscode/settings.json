@@ -2,5 +2,6 @@
   "files.associations": {
     "*.yml": "ansible",
     "*/**/*.yml": "ansible"
-  }
+  },
+  "ansible.python.interpreterPath": "./venv/bin/python"
 }

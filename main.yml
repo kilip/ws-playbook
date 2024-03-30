@@ -5,9 +5,12 @@
   roles:
     - role: preflight
       tags: preflight
+    - role: core
+      tags: core
     - role: geerlingguy.docker
-      tags: main
+      tags: docker
     - role: kilip.regolith
-      tags: main
+      tags: regolith
   vars_files:
     - config/default.yml
+    - config/custom.yml

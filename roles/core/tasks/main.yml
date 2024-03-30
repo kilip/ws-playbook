@@ -1,0 +1,24 @@
+---
+- name: Ensure dotfiles configured
+  ansible.builtin.import_tasks: dotfiles.yml
+  tags: dotfiles
+
+- name: Ensure nerd-fonts installed
+  ansible.builtin.import_tasks: nerd-fonts.yml
+  tags: nerd-fonts
+
+- name: Ensure fish installed
+  ansible.builtin.import_tasks: fish.yml
+  tags: fish
+
+- name: Ensure openrgb installed
+  ansible.builtin.import_tasks: openrgb.yml
+  tags: openrgb
+
+- name: Ensure snap packages installed
+  ansible.builtin.import_tasks: snap.yml
+  tags: snap
+
+- name: Ensure homebrew configured
+  ansible.builtin.import_tasks: homebrew.yml
+  tags: homebrew

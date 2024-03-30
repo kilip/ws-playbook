@@ -1,0 +1,22 @@
+---
+- name: Ensure chezmoi command configured
+  ansible.builtin.set_fact:
+    core_chezmoi_cmd: "{{ core_chezmoi_cmd }} --apply {{ core_dotfiles_repo }}"
+  when: core_dotfiles_repo != ""
+
+- name: Ensure chezmoi install script downloaded
+  ansible.builtin.get_url:
+    url: https://get.chezmoi.io/lb
+    dest: "{{ core_chezmoi_install_script }}"
+    mode: "0775"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Ensure chezmoi installed
+  become: true
+  become_user: "{{ user }}"
+  ansible.builtin.command:
+    cmd: "{{ core_chezmoi_cmd }}"
+    creates: "{{ home_dir }}/.local/bin/chezmoi"
+  args:
+    chdir: "{{ home_dir }}"
