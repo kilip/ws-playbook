@@ -10,5 +10,4 @@
       when: ansible_os_family == 'Debian'
 
 - name: Import main playbook
-  import_playbook: ../../main.yml
-  tags: [preflight, core]
+  ansible.builtin.import_playbook: ../../main.yml
