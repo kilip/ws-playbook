@@ -15,7 +15,11 @@
       when: install_regolith
   vars_files:
     - config/default.yml
-    - config/custom.yml
   vars:
     install_docker: "{{ install_docker || false }}"
     install_regolith: "{{ install_regolith || false }}"
+    custom_config_file: "{{ lookup('first_found', 'config/custom.yml', errors='ignore') }}"
+  pre_tasks:
+    - name: Ensure custom vars loaded
+      ansible.builtin.include_vars: custom_config_file
+      when: custom_config_file is file
