@@ -13,6 +13,8 @@
   ansible.builtin.git:
     repo: "{{ preflight_pass_repo }}"
     dest: "{{ home_dir }}/.password-store"
+    force: true
+
 
 - name: Ensure pass configure scripts executed
   become: true

@@ -1,6 +1,6 @@
 ---
 - name: Core Packages
-  hosts: all
+  hosts: workstation
   become: true
   roles:
     - role: preflight
