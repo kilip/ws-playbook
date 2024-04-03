@@ -3,4 +3,5 @@
     "*.yml": "ansible",
     "*/**/*.yml": "ansible"
   },
+  "ansible.python.interpreterPath": "/home/toni/code/ansible/ws-playbook/.venv/bin/python",
 }

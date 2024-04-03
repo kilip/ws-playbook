@@ -8,7 +8,7 @@
   tags: openrgb
 
 - name: Ensure openrgb package installed
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: openrgb
     state: present
   tags: openrgb
