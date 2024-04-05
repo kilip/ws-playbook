@@ -1,0 +1,2 @@
+Acquire::http::proxy "{{ lookup('ansible.builtin.env', 'HTTP_PROXY') }}";
+Acquire::https::proxy "{{ lookup('ansible.builtin.env', 'HTTP_PROXY') }}";

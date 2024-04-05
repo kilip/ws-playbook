@@ -41,3 +41,5 @@ core_fish_packages:
 
 install_docker: false
 install_regolith: false
+
+custom_config_file: "{{ lookup('first_found', 'config/custom.yml', errors='ignore') }}"
