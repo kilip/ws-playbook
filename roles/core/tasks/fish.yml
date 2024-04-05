@@ -14,7 +14,7 @@
 
 - name: Ensure omf installed
   become: true
-  become_user: toni
+  become_user: "{{ user }}"
   ansible.builtin.command:
     cmd: fish /tmp/omf-install.fish --noninteractive -y --verbose
     creates: "{{ home_dir }}/.config/omf"
@@ -22,7 +22,7 @@
 
 - name: Ensure omf updated
   become: true
-  become_user: toni
+  become_user: "{{ user }}"
   tags: fish
   ansible.builtin.command:
     cmd: 'fish -c "omf update"'
@@ -30,7 +30,7 @@
 
 - name: Ensure omf plugins installed
   become: true
-  become_user: toni
+  become_user: "{{ user }}"
   ansible.builtin.command:
     cmd: 'fish -c "omf install {{ item }}"'
     creates: "{{ home_dir }}/.local/share/omf/pkg/{{ item }}"
@@ -39,9 +39,16 @@
 
 - name: Ensure omf themes installed
   become: true
-  become_user: toni
+  become_user: "{{ user }}"
   ansible.builtin.command:
     cmd: 'fish -c "omf install {{ item }}"'
     creates: "{{ home_dir }}/.local/share/omf/themes/{{ item }}"
   with_items: "{{ core_omf_themes }}"
   tags: fish
+
+- name: Ensure user shell configured
+  ansible.builtin.user:
+    user: "{{ user }}"
+    state: present
+    shell: /usr/bin/fish
+  tags: user

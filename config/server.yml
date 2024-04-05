@@ -5,3 +5,5 @@ core_packages:
   - git
   - pass
   - age
+  - zip
+  - fish
