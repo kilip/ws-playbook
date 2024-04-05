@@ -1,0 +1,7 @@
+---
+core_packages:
+  - curl
+  - direnv
+  - git
+  - pass
+  - age

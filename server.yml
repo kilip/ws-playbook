@@ -9,6 +9,7 @@
       tags: core
   vars_files:
     - config/default.yml
+    - config/server.yml
   vars:
     install_docker: "{{ install_docker || false }}"
     install_regolith: "{{ install_regolith || false }}"
