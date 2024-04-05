@@ -18,4 +18,4 @@
       when: ansible_os_family == 'Debian'
 
 - name: Import main playbook
-  ansible.builtin.import_playbook: ../../workstation.yml
+  ansible.builtin.import_playbook: ../../server.yml

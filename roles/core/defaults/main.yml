@@ -10,3 +10,10 @@ core_omf_themes: []
 
 core_homebrew_packages: []
 core_snap_packages: []
+
+core_dotfiles: true
+core_fish: true
+core_homebrew: true
+core_nerdfonts: true
+core_openrgb: true
+core_snap: true

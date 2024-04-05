@@ -1,25 +1,24 @@
 ---
-- name: Core Packages
-  hosts: workstation
+- name: Install Servers
+  hosts: all
   become: true
   roles:
     - role: preflight
       tags: preflight
     - role: core
       tags: core
-    - role: geerlingguy.docker
-      tags: docker
-      when: install_docker
-    - role: kilip.regolith
-      tags: regolith
-      when: install_regolith
   vars_files:
     - config/default.yml
   vars:
     install_docker: "{{ install_docker || false }}"
     install_regolith: "{{ install_regolith || false }}"
-    custom_config_file: "{{ lookup('first_found', 'config/custom.yml', errors='ignore') }}"
+    core_dotfiles: true
+    core_fish: true
+    core_homebrew: false
+    core_nerdfonts: true
+    core_openrgb: false
+    core_snap: false
   pre_tasks:
     - name: Ensure custom vars loaded
-      ansible.builtin.include_vars: custom_config_file
+      ansible.builtin.include_vars: "{{ custom_config_file }}"
       when: custom_config_file is file
