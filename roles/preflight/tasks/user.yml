@@ -7,10 +7,3 @@
     commands: "ALL"
     nopassword: true
   tags: user
-
-- name: Ensure user shell configured
-  ansible.builtin.user:
-    user: "{{ user }}"
-    state: present
-    shell: /usr/bin/fish
-  tags: user
