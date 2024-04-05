@@ -16,5 +16,5 @@
 
 - name: Ensure password store configured
   ansible.builtin.import_tasks: pass.yml
-  when: preflight_pass_repo != ''
+  when: preflight_pass_repo != '' and not ansible_check_mode
   tags: pass
